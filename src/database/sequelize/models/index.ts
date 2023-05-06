@@ -1,3 +1,4 @@
 import { CarRecordsModel } from "./carRecord";
+import { UserModel } from "./user";
 
-export { CarRecordsModel }
+export { CarRecordsModel, UserModel }
