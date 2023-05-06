@@ -4,6 +4,6 @@ import { signUpRouter } from "./modules/auth/routes";
 
 const router = express.Router();
 router.use('/cars', carBookingRoutes);
-router.get('/signup', signUpRouter)
+router.use('/sign-up', signUpRouter)
 
 export { router }
