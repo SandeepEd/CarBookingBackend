@@ -1,4 +1,4 @@
-import { NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
 import { BaseController } from "../../../shared/BaseController";
 import { IUser } from "../../user/IUserRepo";
 import { SignUpUseCase } from "./useCase";
@@ -8,7 +8,7 @@ export class SignUpController extends BaseController {
         super();
     }
 
-    async handleController(req: any, res: any, next: NextFunction) {
+    async handleController(req: Request, res: Response, next: NextFunction) {
         const user = req.body as IUser;
         try {
             const result = this.signUpUseCase.execute(user);

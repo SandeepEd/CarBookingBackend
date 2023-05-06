@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import { AddCarUseCase } from "./useCase";
 
 export class AddCarController {
@@ -5,7 +6,7 @@ export class AddCarController {
         this.handle = this.handle.bind(this);
     }
 
-    async handle(req: any, res: any) {
+    async handle(req: Request, res: Response) {
         console.log(req.body)
         console.log(this)
         if (!this) {
