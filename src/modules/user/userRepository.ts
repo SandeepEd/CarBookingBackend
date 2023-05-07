@@ -9,4 +9,10 @@ export class UserRepository implements IUserRepo {
         const createdUser = UserModel.create(user);
         return createdUser;
     }
+
+    async getUserByEmail(email: string): Promise<IUser | null> {
+        const { UserModel } = this.models;
+        const user = await UserModel.findOne({ where: { email } });
+        return user;
+    }
 }
