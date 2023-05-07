@@ -8,6 +8,6 @@ export class SignUpUseCase {
     async execute(user: IUser) {
         const { password } = user;
         const hashedPassword = await this.authServices.hashPassword(password);
-        return await this.userRepo.createUser(user);
+        return await this.userRepo.createUser({ ...user, password: hashedPassword });
     }
 }
