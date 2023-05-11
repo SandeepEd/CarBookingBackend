@@ -11,7 +11,7 @@ export class SignUpController extends BaseController {
     async handleController(req: Request, res: Response, next: NextFunction) {
         const user = req.body as IUser;
         try {
-            const result = this.signUpUseCase.execute(user);
+            const result = await this.signUpUseCase.execute(user);
             this.handleResponse(req, res, result)
         } catch (error: any) {
             next(error);
