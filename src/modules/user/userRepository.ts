@@ -15,4 +15,10 @@ export class UserRepository implements IUserRepo {
         const user = await UserModel.findOne({ where: { email } });
         return user;
     }
+
+    async getUserById(id: number): Promise<IUser | null> {
+        const { UserModel } = this.models;
+        const user = await UserModel.findByPk(id);
+        return user;
+    }
 }
