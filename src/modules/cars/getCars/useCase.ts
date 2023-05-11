@@ -8,7 +8,6 @@ export class GetCarsUseCase {
         const cars = await this.carRecordsModel.findAll();
         const carsData = cars.map((car) => car.get());
 
-        console.log(carsData)
         return carsData;
     }
 }
