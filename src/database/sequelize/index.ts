@@ -10,8 +10,6 @@ const {
     port
 }: Options = config.get('database');
 
-console.log(`configurations :::`, dialect, username, password, database, host, port)
-
 const sequelize = new Sequelize({
     dialect,
     host,

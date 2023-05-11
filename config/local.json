@@ -1,6 +1,6 @@
 {
     "database": {
-        "username": "sandeepedara",
+        "username": "postgres",
         "database": "CARBOOKING",
         "password": "$Rinu009",
         "dialect": "postgres",

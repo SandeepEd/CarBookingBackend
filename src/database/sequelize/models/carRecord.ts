@@ -38,9 +38,9 @@ CarRecordsModel.init({
         allowNull: true
     }
 }, {
-    tableName: 'CarRecords',
-    modelName: 'CarRecords',
-    schema: `CARS`,
+    tableName: 'CARS',
+    modelName: 'CARS',
+    schema: `CarRecords`,
     sequelize,
     paranoid: true,
     timestamps: false

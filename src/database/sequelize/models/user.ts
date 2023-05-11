@@ -35,7 +35,7 @@ UserModel.init({
 }, {
     tableName: 'Users',
     modelName: 'Users',
-    schema: `CARS`,
+    schema: `identity`,
     sequelize,
     paranoid: true,
     timestamps: false

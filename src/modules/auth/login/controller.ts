@@ -1,21 +1,24 @@
-export class LogInController {
-    constructor(private logInUseCase: any) { }
+import { NextFunction, Response } from "express";
+import { BaseController } from "../../../shared/BaseController";
+import { LogInUseCase } from "./useCase";
+import { SessionManager } from "../../../services/SessionManager";
 
-    async handle(req: any, res: any) {
-        const { email, password } = req.body;
+export class LogInController extends BaseController {
+    constructor(private logInUseCase: LogInUseCase) {
+        super();
+    }
+
+    async handleController(req: any, res: Response, next: NextFunction) {
+        const logInDto = req.body as { email: string, password: string };
         try {
-            const result = await this.logInUseCase.execute({ email, password });
-            if (result) {
-                res.status(200).json({
-                    message: "Successfully logged in",
-                    data: result
-                });
-            }
+            const result = await this.logInUseCase.execute(logInDto, req);
+            delete result.password;
+            SessionManager.setSession(req, result.token);
+            res.cookie(`spa_token`, true);
+            this.handleResponse(req, res, result);
+
         } catch (error: any) {
-            res.status(400).json({
-                message: "Failed to log in",
-                error: error.message
-            });
+            next(error);
         }
     }
 }
