@@ -8,6 +8,8 @@ import nocache from 'nocache';
 import helmet from 'helmet';
 import { v4 as uuid } from 'uuid';
 import cookieParser from 'cookie-parser';
+import createError from 'http-errors';
+import { handleErrors } from './utils/HandleErrors';
 
 const app = express();
 const redisClient = createClient()
@@ -56,6 +58,12 @@ app.use((req, res, next) => {
 })
 
 app.use(router)
+
+app.use((req, res, next) => {
+    next(createError(404))
+})
+
+app.use(handleErrors)
 
 app.listen(3000, () => {
     console.log('Server is running');

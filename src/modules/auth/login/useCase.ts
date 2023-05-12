@@ -1,3 +1,4 @@
+import createError from "http-errors";
 import { IAuthServices } from "../../../services";
 import { IUser } from "../../user/IUserRepo";
 import { UserRepository } from "../../user/userRepository";
@@ -15,7 +16,8 @@ export class LogInUseCase {
         const isPasswordValid = await this.authServices.compare(password, user.password);
 
         if (!isPasswordValid) {
-            throw new Error("Invalid password");
+            console.log("Invalid password")
+            throw new createError.PreconditionFailed("Invalid password");
         }
         const token = this.authServices.generateUserToken({
             id: user.id,
