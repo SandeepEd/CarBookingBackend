@@ -1,13 +1,18 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { AddCarUseCase } from "./useCase";
+import { BaseController } from "../../../shared/BaseController";
 
-export class AddCarController {
+export class AddCarController extends BaseController {
     constructor(public addCarUseCase: AddCarUseCase) {
-        this.handle = this.handle.bind(this);
+        super()
     }
 
-    async handle(req: Request, res: Response) {
-        const car = await this.addCarUseCase.execute(req.body);
-        res.send(car);
+    async handleController(req: Request, res: Response, next: NextFunction) {
+        try {
+            const car = await this.addCarUseCase.execute(req.body);
+            this.handleResponse(req, res, car);
+        } catch (error: any) {
+            next(error);
+        }
     }
 }
