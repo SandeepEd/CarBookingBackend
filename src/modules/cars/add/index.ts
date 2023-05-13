@@ -1,8 +1,8 @@
 import { AddCarUseCase } from './useCase';
 import { AddCarController } from './controller';
-import { CarRecordsModel } from '../../../database/sequelize/models/index';
+import { carRepo } from '../repo';
 
-const addCarUseCase = new AddCarUseCase(CarRecordsModel);
+const addCarUseCase = new AddCarUseCase(carRepo);
 const addCarController = new AddCarController(addCarUseCase);
 
 export { addCarController }

@@ -4,7 +4,7 @@ import { getCarsController } from "./getCars";
 
 const carBookingRoutes = express.Router()
 
-carBookingRoutes.post('/', addCarController.handleController);
+carBookingRoutes.post('/add-car', addCarController.handleController);
 carBookingRoutes.get('/', getCarsController.handleController);
 
 export { carBookingRoutes }
