@@ -5,9 +5,15 @@ import { ICheckOut } from "../../../database/sequelize/models/checkOut";
 export class CheckOutRepo implements ICheckOutRepo {
     constructor(private sqlModels: typeof models) { }
 
-    async getCheckoutCars(): Promise<ICheckOut[]> {
+    async getCheckoutItems(userId: number): Promise<ICheckOut[]> {
         const { CheckOutModel } = this.sqlModels;
-        const checkoutCars = await CheckOutModel.findAll();
+        const checkoutCars = await CheckOutModel.findAll(
+            {
+                where: { userId },
+                include: [
+                    CheckOutModel.CarAssociation,
+                ]
+            });
         const checkoutCarsData = checkoutCars.map((car: any) => car.get());
         return checkoutCarsData;
     }

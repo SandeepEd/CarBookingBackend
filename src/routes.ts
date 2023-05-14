@@ -11,6 +11,6 @@ router.use('/cars', ManageRoute, carBookingRoutes);
 router.use('/sign-up', signUpRouter)
 router.use(`/login`, logInRouter)
 router.use('/user', ManageRoute, userRouter)
-router.use('/add-to-cart', ManageRoute, checkoutRoute)
+router.use('/checkout', ManageRoute, checkoutRoute)
 
 export { router }
