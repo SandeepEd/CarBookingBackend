@@ -1,4 +1,7 @@
 import { CarRecordsModel } from "./carRecord";
 import { UserModel } from "./user";
+import { CheckOutModel } from "./checkOut";
 
-export { CarRecordsModel, UserModel }
+CheckOutModel.associate();
+
+export { CarRecordsModel, UserModel, CheckOutModel }
